@@ -4,18 +4,124 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
+  --foreground: #212b36;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --text-primary: #212b36;
+  --text-secondary: #637381;
+  --text-disabled: #919eab;
+
+  --primary-main: #2065d1;
+  --primary-light: #76b0f1;
+  --contrastText: #ffffff;
+
+  --info-main: #00b8d9;
+
+  --success-main: #22c55e;
+
+  --warning-main: #ffab00;
+  --warning-contrastText: #ffffff;
+
+  --error-lighter: #ffe9d5;
+  --error-main: #ff5630;
+  --error-darker: #7a0916;
+
+  --white: #ffffff;
+  --white80: rgba(255, 255, 255, 0.8);
+  --black: #000000;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.typography_h1 {
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 80px;
+}
+
+.typography_h2 {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 64px;
+}
+
+.typography_h3 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.typography_h4 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.typography_h5 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.typography_h6 {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.typography_subtitle1 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.typography_subtitle2 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.typography_body1 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.typography_body2 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.typography_caption {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.typography_overline {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.typography_button_large {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
 }
