@@ -13,6 +13,8 @@ import { paths } from "@/routes/paths";
 import { useBoolean } from "@/hooks/use-boolean";
 import Iconify from "@/components/iconify";
 import LoadingButton from "@/components/loading-button";
+import { toast } from "react-toastify";
+import { showToast } from "@/components/react-toastify";
 
 // ----------------------------------------------------------------------
 
@@ -53,6 +55,7 @@ export default function LoginForm() {
     const onSubmit = useCallback(async (data: FormValuesProps) => {
         try {
             await login(data.email, data.password);
+            showToast('success', 'Sign in successfully')
         } catch (error: any) {
             setErrorMsg(typeof error === "string" ? error : error.message);
         }
@@ -105,16 +108,16 @@ export default function LoginForm() {
                 />
             </div>
 
-            <div className="flex flex-row justify-end border-inherit">
+            {/* <div className="flex flex-row justify-end border-inherit">
                 <Link
                     href={paths.auth.resetPassword}
                     className="typography_body2 hover:underline self-end py-4"
                 >
                     {APP.login.form.forgotPassword}
                 </Link>
-            </div>
+            </div> */}
 
-            <LoadingButton fullWidth type="submit" loading={isSubmitting} color="primary" size="medium" >
+            <LoadingButton className="mt-6" fullWidth type="submit" loading={isSubmitting} color="primary" size="medium" >
                 {APP.login.form.button}
             </LoadingButton>
         </FormProvider>

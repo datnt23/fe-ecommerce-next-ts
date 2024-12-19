@@ -44,8 +44,9 @@ export const tokenExpired = (exp: number) => {
   clearTimeout(expiredTimer);
 
   expiredTimer = setTimeout(() => {
-    alert("Token expired");
+    // alert("Token expired");
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     window.location.href = paths.auth.login;
   }, timeLeft);
 };
@@ -57,15 +58,21 @@ export const setSession = (accessToken: string | null) => {
     localStorage.setItem("accessToken", accessToken);
 
     axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-
-    // This function below will handle when token is expired
-    const { exp } = jwtDecode(accessToken); // ~3 days by minimals server
-    tokenExpired(exp);
   } else {
     localStorage.removeItem("accessToken");
 
-    document.cookie = "refreshToken=; path=/; max-age=0;";
-
     delete axiosInstance.defaults.headers.common.Authorization;
+  }
+};
+
+export const setRefreshToken = (token: string | null) => {
+  if (token) {
+    localStorage.setItem("refreshToken", token);
+
+    // This function below will handle when token is expired
+    const { exp } = jwtDecode(token); // ~3 days by minimals server
+    tokenExpired(exp);
+  } else {
+    localStorage.removeItem("refreshToken");
   }
 };

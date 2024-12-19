@@ -1,7 +1,12 @@
 import axios from "axios";
-import { API } from "../config-global";
+import { API, API_ENDPOINTS } from "../config-global";
+import localStorageAvailable from "./local-storage";
+import { setSession } from "../auth/context/utils";
+import { paths } from "@/routes/paths";
 
 // ----------------------------------------------------------------------
+
+const REFRESH_KEY = "refreshToken";
 
 const axiosInstance = axios.create({
   baseURL: API.hostUrl,
@@ -18,7 +23,6 @@ axiosInstance.defaults.withCredentials = true;
 axiosInstance.interceptors.request.use(
   (config) => {
     // Do something before request is sent
-    console.log(config);
 
     return config;
   },
@@ -28,16 +32,70 @@ axiosInstance.interceptors.request.use(
   }
 );
 
+const refreshTokenApi = async (refreshToken: string) => {
+  return await axiosInstance.get(API_ENDPOINTS.auth.refreshToken, {
+    headers: {
+      "x-refresh-token": `Bearer ${refreshToken}`,
+    },
+  });
+};
+
+const handleLogout = async () => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+};
+
+let refreshTokenPromise: any = null;
+
 //* Add a response interceptor
 axiosInstance.interceptors.response.use(
-  function (response) {
+  (response) => {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
   },
-  function (error) {
+  (error) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    if (error.response?.status === 401) {
+      handleLogout().then(() => {
+        location.href = paths.auth.login;
+      });
+    }
+
+    const originalRequest = error.config;
+
+    if (error.response?.status === 410 && originalRequest) {
+      if (!refreshTokenPromise) {
+        const storageAvailable = localStorageAvailable();
+
+        const refreshToken = storageAvailable
+          ? localStorage.getItem(REFRESH_KEY)
+          : null;
+
+        if (refreshToken) {
+          refreshTokenPromise = refreshTokenApi(refreshToken)
+            .then((res) => {
+              const { access_token } = res.data.data;
+              setSession(access_token);
+            })
+            .catch((err) => {
+              handleLogout().then(() => {
+                location.href = paths.auth.login;
+                return Promise.reject(err);
+              });
+            })
+            .finally(() => {
+              refreshTokenPromise = null;
+            });
+        }
+      }
+
+      return refreshTokenPromise.then(() => {
+        return axiosInstance(originalRequest);
+      });
+    }
+
     if (error.response?.status !== 410) {
       //! Error notification regardless of any error code on the screen => Except code 410 - GONE: Serves to automatically call API to refresh expired tokens
       console.log(error.response?.data?.message || error?.message);

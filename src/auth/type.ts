@@ -16,6 +16,7 @@ export type AuthStateType = {
   status?: string;
   loading: boolean;
   user: AuthUserType;
+  open?: boolean;
 };
 
 type CanRemove = {
@@ -43,4 +44,8 @@ export type ContextType = CanRemove & {
     lastName: string
   ) => Promise<void>;
   logout: () => Promise<void>;
+  // Drawer
+  open: boolean;
+  onToggle: VoidFunction;
+  onClose: VoidFunction;
 };

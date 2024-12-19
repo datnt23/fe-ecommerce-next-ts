@@ -1,6 +1,6 @@
 import React from 'react'
-import AuthLayout from '../../../layouts/auth/auth-layout';
-import { GuestGuard } from '../../../auth/guard';
+import { AuthGuard } from '../../auth/guard';
+import DashboardLayout from '../../layouts/dashboard';
 
 // ----------------------------------------------------------------------
 
@@ -10,10 +10,10 @@ type Props = {
 
 export default function Layout({ children }: Props) {
     return (
-        <GuestGuard>
-            <AuthLayout title='Welcome to login page'>
+        <AuthGuard>
+            <DashboardLayout>
                 {children}
-            </AuthLayout>
-        </GuestGuard>
+            </DashboardLayout>
+        </AuthGuard>
     )
 }

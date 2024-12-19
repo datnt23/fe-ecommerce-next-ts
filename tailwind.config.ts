@@ -10,7 +10,18 @@ export default {
   theme: {
     extend: {
       zIndex: {
+        1: "1",
+        "app-bar": "var(--zIndex-app-bar)",
+        "layout-header": "var(--zIndex-layout-header)",
+        drawer: "var(--zIndex-drawer)",
+        "layout-nav": "var(--zIndex-layout-nav)",
+        modal: "var(--zIndex-modal)",
+        snackbar: "var(--zIndex-snackbar)",
         z1999: "1999",
+        z9990: "9990",
+      },
+      borderRadius: {
+        "50%": "50%",
       },
       screens: {
         xs: "480px",
@@ -46,15 +57,36 @@ export default {
         "warning-contrastText": "var(--warning-contrastText)",
 
         "error-lighter": "var(--error-lighter)",
+        "error-light": "var(--error-light)",
         "error-main": "var(--error-main)",
+        "error-dark": "var(--error-dark)",
         "error-darker": "var(--error-darker)",
+
+        gray100: "var(--gray100)",
+        gray200: "var(--gray200)",
+        gray300: "var(--gray300)",
+        gray400: "var(--gray400)",
+        gray500: "var(--gray500)",
+        gray600: "var(--gray600)",
+        gray700: "var(--gray700)",
+        gray800: "var(--gray800)",
+        gray900: "var(--gray900)",
+
+        gray24per: "rgba(145, 158, 171, 0.24)",
       },
       height: {
         mobile: "64px",
         desktop: "80px",
       },
       width: {
+        "nav-vertical": "300px",
+        "nav-mini": "88px",
         "nav-bar": "1200px",
+        "drawer-account": "320px",
+        "drawer-settings": "360px",
+      },
+      boxShadow: {
+        z8: "0 8px 16px 0 rgba(145, 158, 171, 0.16)",
       },
     },
   },

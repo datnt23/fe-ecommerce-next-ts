@@ -14,25 +14,79 @@
   --primary-light: #76b0f1;
   --contrastText: #ffffff;
 
+  --info-lighter: #CAFDF5;
+  --info-light: #61F3F3;
   --info-main: #00b8d9;
+  --info-dark: #006C9C;
+  --info-darker: #003768;
 
+  --success-lighter: #D3FCD2;
+  --success-light: #77ED8B;
   --success-main: #22c55e;
+  --success-dark: #118D57;
+  --success-darker: #065E49;
 
+  --warning-lighter: #FFF5CC;
+  --warning-light: #FFD666;
   --warning-main: #ffab00;
+  --warning-dark: #B76E00;
+  --warning-darker: #7A4100;
   --warning-contrastText: #ffffff;
 
   --error-lighter: #ffe9d5;
+  --error-light: #FFAC82;
   --error-main: #ff5630;
+  --error-dark: #B71D18;
   --error-darker: #7a0916;
 
   --white: #ffffff;
   --white80: rgba(255, 255, 255, 0.8);
   --black: #000000;
+
+  --gray100: #f9fafb;
+  --gray200: #f4f6f8;
+  --gray300: #dfe3e8;
+  --gray400: #c4cdd5;
+  --gray500: #919eab;
+  --gray600: #637381;
+  --gray700: #454f5b;
+  --gray800: #212b36;
+  --gray900: #161c24;
+
+  /* zIndex */
+  --zIndex-app-bar: 1100;
+  --zIndex-layout-header: 1101;
+  --zIndex-drawer: 1200;
+  --zIndex-layout-nav: 1201;
+  --zIndex-modal: 1300;
+  --zIndex-snackbar: 1400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
+}
+
+@layer utilities {
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
 }
 
 .typography_h1 {

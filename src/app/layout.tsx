@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { primaryFont } from "../theme/typography";
 import { MotionLazy } from "../components/framer-motion";
-import { AuthProvider } from "../auth/context";
+import { AuthConsumer, AuthProvider } from "../auth/context";
+import ToastProvider from "../components/react-toastify";
+import ProgressBar from "../components/progress-bar";
+import { SettingsDrawer, SettingsProvider } from "../components/settings";
+import AccountDrawer from "../components/account-custom/drawer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,11 +22,21 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={primaryFont.className}>
         <AuthProvider>
-          <MotionLazy>
-            {children}
-          </MotionLazy>
+          <SettingsProvider defaultSettings={{
+            themeMode: "light", // 'light' | 'dark'
+            themeLayout: "vertical",// 'vertical' | 'horizontal' | 'mini'
+          }}>
+            < MotionLazy >
+              <ToastProvider>
+                <AccountDrawer />
+                <SettingsDrawer />
+                <ProgressBar />
+                <AuthConsumer>{children}</AuthConsumer>
+              </ToastProvider>
+            </MotionLazy>
+          </SettingsProvider>
         </AuthProvider>
-      </body>
-    </html>
+      </body >
+    </html >
   );
 }

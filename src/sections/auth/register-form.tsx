@@ -7,12 +7,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormProvider from "../../components/hook-form";
 import { useAuthContext } from "../../auth/hooks/use-auth-context";
 import RHFTextField from "../../components/hook-form/rhf-text-field";
-import { APP } from "@/config-global";
+import { APP } from "../../config-global";
 import Link from "next/link";
-import { paths } from "@/routes/paths";
-import { useBoolean } from "@/hooks/use-boolean";
-import Iconify from "@/components/iconify";
-import LoadingButton from "@/components/loading-button";
+import { paths } from "../../routes/paths";
+import { useBoolean } from "../../hooks/use-boolean";
+import Iconify from "../../components/iconify";
+import LoadingButton from "../../components/loading-button";
+import { showToast } from "../../components/react-toastify";
 
 // ----------------------------------------------------------------------
 
@@ -67,7 +68,6 @@ export default function RegisterForm() {
 
     const onSubmit = useCallback(async (data: FormValuesProps) => {
         try {
-
             await register(
                 data.email,
                 data.password,
@@ -75,6 +75,7 @@ export default function RegisterForm() {
                 data.firstName,
                 data.lastName,
             );
+            showToast('success', 'Sign in successfully')
         } catch (error: any) {
             setErrorMsg(typeof error === "string" ? error : error.message);
         }

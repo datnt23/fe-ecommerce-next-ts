@@ -1,7 +1,7 @@
 "use client";
 
-import { useScroll } from "framer-motion";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useScroll } from "framer-motion";
 
 // ----------------------------------------------------------------------
 

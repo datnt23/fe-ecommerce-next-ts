@@ -1,10 +1,10 @@
 "use client"
 
-import React, { useCallback, useEffect, useMemo, useReducer } from "react";
+import React, { useCallback, useEffect, useMemo, useReducer, useState } from "react";
 import { ActionMapType, AuthStateType, AuthUserType } from "../type";
 import localStorageAvailable from "../../utils/local-storage";
 import { AuthContext } from "./auth-context";
-import { isValidToken, setSession } from "./utils";
+import { isValidToken, setRefreshToken, setSession } from "./utils";
 import axiosInstance from "../../utils/axios";
 import { API_ENDPOINTS } from "@/config-global";
 
@@ -76,6 +76,8 @@ type Props = {
 export function AuthProvider({ children }: Props) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    const [openDrawer, setOpenDrawer] = useState(false);
+
     const storageAvailable = localStorageAvailable();
 
     const initialize = useCallback(async () => {
@@ -127,9 +129,10 @@ export function AuthProvider({ children }: Props) {
         });
         const { data } = response.data;
 
-        const { user, access_token } = data;
+        const { user, access_token, refresh_token } = data;
 
         setSession(access_token);
+        setRefreshToken(refresh_token)
 
         dispatch({
             type: Types.LOGIN,
@@ -157,9 +160,10 @@ export function AuthProvider({ children }: Props) {
             });
             const { data } = response.data;
 
-            const { user, access_token } = data;
+            const { user, access_token, refresh_token } = data;
 
             setSession(access_token);
+            setRefreshToken(refresh_token)
 
             dispatch({
                 type: Types.REGISTER,
@@ -174,9 +178,19 @@ export function AuthProvider({ children }: Props) {
     //* LOGOUT
     const logout = useCallback(async () => {
         setSession(null);
+        setRefreshToken(null)
         dispatch({
             type: Types.LOGOUT,
         });
+    }, []);
+
+    //* Drawer
+    const onToggleDrawer = useCallback(() => {
+        setOpenDrawer((prev) => !prev);
+    }, []);
+
+    const onCloseDrawer = useCallback(() => {
+        setOpenDrawer(false);
     }, []);
 
     const checkAuthenticated = state.user ? AUTHENTICATED : UNAUTHENTICATED
@@ -189,12 +203,15 @@ export function AuthProvider({ children }: Props) {
             loading: status === LOADING,
             authenticated: status === AUTHENTICATED,
             unauthenticated: status === UNAUTHENTICATED,
+            open: openDrawer,
             //
             login,
             register,
             logout,
+            onToggle: onToggleDrawer,
+            onClose: onCloseDrawer
         }),
-        [login, logout, register, state.user, status]
+        [login, logout, register, onToggleDrawer, onCloseDrawer, state.user, status, openDrawer]
     );
 
     return (

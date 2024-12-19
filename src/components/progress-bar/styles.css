@@ -1,0 +1,26 @@
+/* nprogress styles */
+#progress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background-color: var(--primary-main);
+  height: 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  box-shadow: 0 0 2px var(--primary-main);
+}
+
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  opacity: 1;
+  right: 0;
+  width: 100;
+  height: 100%;
+  transform: rotate(3deg) translate(0, -4px);
+  box-shadow: 0 0 10px var(--primary-main), 0 0 5px var(--primary-main);
+}

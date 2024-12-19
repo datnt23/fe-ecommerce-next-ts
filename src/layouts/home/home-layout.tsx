@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { paths } from '../../routes/paths';
-import Header from './header'
 import { usePathname } from 'next/navigation';
+import HomeHeader from './header';
 
 // ----------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ export default function HomeLayout({ children }: Props) {
 
     return (
         <div className='flex flex-col'>
-            <Header />
+            <HomeHeader />
             <div className={`flex-grow ${!isHome && "md:pt-20 xs:pt-16"}`}>
                 {children}
             </div>

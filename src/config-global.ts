@@ -7,6 +7,7 @@ export const API_ENDPOINTS = {
     me: "/auth/me",
     login: "/auth/login",
     register: "/auth/register",
+    refreshToken: "/auth/refresh-token",
   },
 };
 
@@ -36,6 +37,9 @@ export const APP = {
       button: "Sign in",
     },
   },
+  settings: {
+    name: "Settings",
+  },
 };
 
 export const STRENGTH_COLOR = {
@@ -49,6 +53,11 @@ export const STRENGTH_COLOR = {
 export const HEADER = {
   H_MOBILE: 64,
   H_DESKTOP: 80,
+};
+
+export const NAV = {
+  W_VERTICAL: 300,
+  W_MINI: 88,
 };
 
 export const BREAK_POINTS = {
