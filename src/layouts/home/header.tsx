@@ -14,11 +14,11 @@ import { SettingsButton } from "../../components/settings";
 
 // ----------------------------------------------------------------------
 
-const H_MOBILE = `${HEADER.H_MOBILE || 64}px`;
-const H_DESKTOP = `${HEADER.H_DESKTOP || 80}px`;
+const H_MOBILE = "var(--height-mobile-header)";
+const H_DESKTOP = "var(--height-desktop-header)";
 
 const HomeHeader = () => {
-    const { user, loading, authenticated, unauthenticated } = useAuthContext();
+    const { authenticated } = useAuthContext();
 
     const offSetTop = useOffSetTop(HEADER.H_DESKTOP);
 
@@ -47,7 +47,7 @@ const HomeHeader = () => {
                 animate={controls}
                 initial={{ height: initialHeight }}
             >
-                <div className="w-nav-bar h-full flex items-center px-6 py-0">
+                <div className="w-navbar-bar h-full flex items-center px-6 py-0">
                     <Logo />
 
                     <div className="flex-grow"></div>

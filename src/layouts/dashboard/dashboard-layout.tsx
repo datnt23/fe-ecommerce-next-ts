@@ -1,5 +1,11 @@
+"use client"
+
 import React from 'react'
 import DashboardHeader from './header';
+import NavVertical from './nav-vertical';
+import { useSettingsContext } from '../../components/settings';
+import { useBoolean } from '@/hooks/use-boolean';
+import Main from './main';
 
 // ----------------------------------------------------------------------
 
@@ -8,12 +14,22 @@ type Props = {
 };
 
 export default function DashboardLayout({ children }: Props) {
-    // const renderNavVertical = <NavVertical openNav={nav.value} onCloseNav={nav.onFalse} />;
+    const settings = useSettingsContext();
+
+    const nav = useBoolean();
+
+    const renderNavVertical = <NavVertical openNav={nav.value} onCloseNav={nav.onFalse} />;
 
     return (
         <>
-            <DashboardHeader />
-            {children}
+            <div className="flex flex-row h-full w-full">
+                {renderNavVertical}
+
+                <Main>
+                    <DashboardHeader onOpenNav={nav.onToggle} />
+                    {children}
+                </Main>
+            </div>
         </>
     )
 }

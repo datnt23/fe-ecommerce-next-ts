@@ -3,5 +3,5 @@
 
 
 export default function DashboardPage() {
-    return <div className="flex flex-col">dashboard</div>;
+    return <div className="h-[2000px] w-full overflow-y-scroll">dashboard</div>;
 }

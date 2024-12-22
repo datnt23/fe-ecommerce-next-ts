@@ -74,16 +74,16 @@ export default {
 
         gray24per: "rgba(145, 158, 171, 0.24)",
       },
-      height: {
-        mobile: "64px",
-        desktop: "80px",
-      },
-      width: {
-        "nav-vertical": "300px",
-        "nav-mini": "88px",
-        "nav-bar": "1200px",
-        "drawer-account": "320px",
-        "drawer-settings": "360px",
+      spacing: {
+        mobile: "var(--height-mobile-header)",
+        desktop: "var(--height-desktop-header)",
+        "navbar-dashboard": "var(--width-navbar-dashboard)",
+        "navbar-mini": "var(--width-navbar-mini)",
+        "navbar-vertical": "var(--width-navbar-vertical)",
+        "navbar-bar": "var(--width-navbar-bar)",
+        "drawer-account": "var(--width-drawer-account)",
+        "drawer-settings": "var(--width-drawer-settings)",
+        "drawer-navbar-vertical": "var(--width-drawer-navbar-vertical)",
       },
       boxShadow: {
         z8: "0 8px 16px 0 rgba(145, 158, 171, 0.16)",

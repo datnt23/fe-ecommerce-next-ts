@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  /* Color */
   --background: #ffffff;
   --foreground: #212b36;
 
@@ -60,6 +61,20 @@
   --zIndex-layout-nav: 1201;
   --zIndex-modal: 1300;
   --zIndex-snackbar: 1400;
+
+  /* Width */
+  --width-navbar-mini: 88px;
+  --width-navbar-vertical: 300px;
+  --width-navbar-bar: 1200px;
+  --width-navbar-dashboard: calc(100% - 300px);
+  --width-drawer-account: 320px;
+  --width-drawer-settings: 360px;
+  --width-drawer-navbar-vertical: 280px;
+
+  /* Height */
+  --height-mobile-header: 64px;
+  --height-desktop-header: 72px;
+
 }
 
 * {

@@ -7,7 +7,7 @@ import Iconify from "../../../components/iconify";
 import { APP } from "@/config-global";
 
 export default function SettingsDrawer() {
-    const settings = useSettingsContext();
+    const { onReset, onClose, open } = useSettingsContext();
 
     const renderHead = (
         <div className="w-full py-4 pl-5 pr-2 flex items-center">
@@ -16,7 +16,7 @@ export default function SettingsDrawer() {
             </div>
             <button
                 className="w-9 h-9 p-2 flex items-center justify-center outline-0 m-0 hover:bg-gray24per rounded-full"
-                onClick={settings.onReset}
+                onClick={onReset}
             >
                 <Iconify
                     icon="solar:restart-bold"
@@ -25,7 +25,7 @@ export default function SettingsDrawer() {
             </button>
             <button
                 className="w-9 h-9 p-2 flex items-center justify-center outline-0 m-0 hover:bg-gray24per rounded-full"
-                onClick={settings.onClose}
+                onClick={onClose}
             >
                 <Iconify
                     icon="mingcute:close-line"
@@ -36,9 +36,9 @@ export default function SettingsDrawer() {
     )
     return (
         <AnimatePresence>
-            {settings.open && (
+            {open && (
                 <div className="fixed inset-0 z-drawer">
-                    <div className="fixed -z-1 inset-0 opacity-100" onClick={settings.onClose} />
+                    <div className="fixed -z-1 inset-0 opacity-100" onClick={onClose} />
                     <m.div
                         initial={{ x: "100%", opacity: 0.95 }}
                         animate={{ x: 0, opacity: 1 }}
