@@ -34,9 +34,9 @@ export default function ProgressBar() {
             }
         })
 
-        // return () => {
-        //     mutationObserver.disconnect();
-        // };
+        return () => {
+            mutationObserver.disconnect();
+        };
     }, [])
 
     return null

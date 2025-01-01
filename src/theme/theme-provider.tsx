@@ -1,9 +1,15 @@
-import React from 'react'
+"use client";
 
-const ThemeProvider = () => {
-  return (
-    <div>ThemeProvider</div>
-  )
+import React from "react";
+import { NextUIProvider } from "@nextui-org/react";
+
+// ----------------------------------------------------------------------
+export interface ProvidersProps {
+  children: React.ReactNode;
 }
 
-export default ThemeProvider
+const ThemeProvider = ({ children }: ProvidersProps) => {
+  return <NextUIProvider >{children}</NextUIProvider>;
+};
+
+export default ThemeProvider;

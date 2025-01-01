@@ -1,7 +1,7 @@
 "use client";
 
+import { BREAK_POINTS } from "@/config/layout";
 import { useMediaQuery } from "react-responsive";
-import { BREAK_POINTS } from "../config-global";
 
 // ----------------------------------------------------------------------
 

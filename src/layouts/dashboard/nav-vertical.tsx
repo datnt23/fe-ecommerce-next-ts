@@ -1,11 +1,12 @@
 import Iconify from "@/components/iconify";
 import Logo from "@/components/logo";
-import { NAV } from "@/config-global";
+import { NAV } from "@/config/global";
 import { useResponsive } from "@/hooks/use-responsive";
 import { colord } from "colord";
 import { AnimatePresence, m } from "framer-motion";
 import React from "react";
 import NavToggleButton from "./nav-toggle-button";
+import ScrollBar from "@/components/scroll-bar";
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +33,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
                         <Logo />
                     </div>
 
-                    <div className="flex flex-col flex-1 min-w-0 min-h-0 h-h-screen flex-grow overflow-y-auto no-scrollbar">
+                    <ScrollBar className="flex-1 min-w-0 min-h-0 flex-grow">
                         <div className="h-ful w-full bg-red-500">asdfasdf</div>
                         <div className="h-ful w-full bg-blue-500">asdfasdf</div>
                         <div className="h-ful w-full bg-red-500">asdfasdf</div>
@@ -85,7 +86,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
                         <div className="h-ful w-full bg-blue-500">asdfasdf</div>
                         <div className="h-ful w-full bg-red-500">asdfasdf</div>
                         <div className="h-ful w-full bg-blue-500">asdfasdf</div>
-                    </div>
+                    </ScrollBar>
                 </div>
             ) : (
                 <AnimatePresence>
@@ -106,7 +107,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
                                     <Logo />
                                 </div>
 
-                                <div className="overflow-y-scroll no-scrollbar flex flex-col w-full h-full">
+                                <ScrollBar>
                                     <div className="h-ful w-full bg-red-500">asdfasdf</div>
                                     <div className="h-ful w-full bg-blue-500">asdfasdf</div>
                                     <div className="h-ful w-full bg-red-500">asdfasdf</div>
@@ -159,7 +160,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
                                     <div className="h-ful w-full bg-blue-500">asdfasdf</div>
                                     <div className="h-ful w-full bg-red-500">asdfasdf</div>
                                     <div className="h-ful w-full bg-blue-500">asdfasdf</div>
-                                </div>
+                                </ScrollBar>
                             </m.div>
                         </div>
                     )}

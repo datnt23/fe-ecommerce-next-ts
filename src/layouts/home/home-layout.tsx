@@ -19,7 +19,7 @@ export default function HomeLayout({ children }: Props) {
     return (
         <div className='flex flex-col'>
             <HomeHeader />
-            <div className={`flex-grow ${!isHome && "md:pt-20 xs:pt-16"}`}>
+            <div className={`h-[1200px] flex-grow ${!isHome && "md:pt-20 xs:pt-16"}`}>
                 {children}
             </div>
         </div>

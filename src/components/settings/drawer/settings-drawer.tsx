@@ -4,10 +4,14 @@ import React from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { useSettingsContext } from "../context";
 import Iconify from "../../../components/iconify";
-import { APP } from "@/config-global";
+import { APP } from "@/config/global";
+import ScrollBar from "@/components/scroll-bar";
+import { useTheme } from "@nextui-org/use-theme";
 
 export default function SettingsDrawer() {
-    const { onReset, onClose, open } = useSettingsContext();
+    const { onReset, onClose, open, onUpdate } = useSettingsContext();
+
+    const { theme, setTheme } = useTheme()
 
     const renderHead = (
         <div className="w-full py-4 pl-5 pr-2 flex items-center">
@@ -34,6 +38,13 @@ export default function SettingsDrawer() {
             </button>
         </div>
     )
+
+    const renderMode = (
+        <div>
+
+        </div>
+    )
+
     return (
         <AnimatePresence>
             {open && (
@@ -48,9 +59,13 @@ export default function SettingsDrawer() {
                     >
                         {renderHead}
 
-                        <div className="overflow-y-scroll no-scrollbar flex flex-col w-full h-full">
-
-                        </div>
+                        <ScrollBar>
+                            <div>
+                                The current theme is: {theme}
+                                <button onClick={() => onUpdate('themeMode', 'light')}>Light Mode</button>
+                                <button onClick={() => onUpdate('themeMode', 'dark')}>Dark Mode</button>
+                            </div>
+                        </ScrollBar>
                     </m.div>
                 </div>
             )}

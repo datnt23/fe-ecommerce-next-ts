@@ -7,6 +7,7 @@ import { paths } from "../../../routes/paths";
 import { showToast } from "../../react-toastify";
 import Iconify from "../../iconify";
 import { CustomAvatar } from "../../custom-avatar";
+import ScrollBar from "@/components/scroll-bar";
 
 // ----------------------------------------------------------------------
 
@@ -14,17 +15,17 @@ const OPTIONS = [
     {
         label: "Home",
         linkTo: paths.home.root,
-        icon: <Iconify icon="solar:home-smile-bold" />
+        icon: <Iconify icon="solar:home-smile-bold" />,
     },
     {
         label: "Profile",
         linkTo: paths.home.root,
-        icon: <Iconify icon="solar:user-id-bold" />
+        icon: <Iconify icon="solar:user-id-bold" />,
     },
     {
         label: "Settings",
         linkTo: paths.home.root,
-        icon: <Iconify icon="solar:settings-bold-duotone" />
+        icon: <Iconify icon="solar:settings-bold-duotone" />,
     },
 ];
 
@@ -56,10 +57,7 @@ export default function AccountDrawer() {
         <AnimatePresence>
             {open && (
                 <div className="fixed inset-0 z-drawer">
-                    <div
-                        className="fixed -z-1 inset-0 opacity-100"
-                        onClick={onClose}
-                    />
+                    <div className="fixed -z-1 inset-0 opacity-100" onClick={onClose} />
                     <m.div
                         initial={{ x: "100%", opacity: 0.95 }}
                         animate={{ x: 0, opacity: 1 }}
@@ -67,14 +65,23 @@ export default function AccountDrawer() {
                         transition={{ duration: 0.2 }}
                         className={`fixed z-drawer bg-white shadow-lg w-drawer-account h-screen top-0 right-0 flex flex-col`}
                     >
-                        <div className="overflow-y-scroll no-scrollbar flex flex-col w-full h-full">
-                            <button className="absolute top-3 left-3 w-9 h-9 p-2 flex items-center justify-center outline-0 m-0 hover:bg-gray24per rounded-full" onClick={onClose}>
-                                <Iconify icon="mingcute:close-line" className="w-full h-full text-text-secondary" />
+                        <ScrollBar>
+                            <button
+                                className="absolute top-3 left-3 w-9 h-9 p-2 flex items-center justify-center outline-0 m-0 hover:bg-gray24per rounded-full"
+                                onClick={onClose}
+                            >
+                                <Iconify
+                                    icon="mingcute:close-line"
+                                    className="w-full h-full text-text-secondary"
+                                />
                             </button>
                             <div className="pt-16 flex flex-col items-center pb-6">
                                 <div className="avatar w-20 h-20 mb-3">
                                     <div className="ring-primary ring-offset-base-100 w-full h-full rounded-full ring ring-offset-2">
-                                        <CustomAvatar className="typography_h2" name={user?.display_name} />
+                                        <CustomAvatar
+                                            className="typography_h2"
+                                            name={user?.display_name}
+                                        />
                                     </div>
                                 </div>
                                 <h3 className="typography_subtitle1 whitespace-nowrap text-ellipsis overflow-hidden mt-3">
@@ -98,8 +105,7 @@ export default function AccountDrawer() {
                                     </button>
                                 ))}
                             </div>
-
-                        </div>
+                        </ScrollBar>
                         <div className="w-full p-5">
                             <button
                                 onClick={handleLogout}

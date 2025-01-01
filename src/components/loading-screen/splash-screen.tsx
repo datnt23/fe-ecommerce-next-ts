@@ -12,7 +12,7 @@ type Props = {
 export default function SplashScreen({ className = "", ...other }: Props) {
     return (
         <div
-            className={`right-0 w-full bottom-0 h-full z-z9990 flex fixed items-center justify-center bg-white ${className}`}
+            className={`right-0 w-full bottom-0 h-full z-z9999 flex fixed items-center justify-center bg-inherit ${className}`}
             {...other}
         >
             <>

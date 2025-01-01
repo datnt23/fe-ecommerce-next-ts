@@ -1,7 +1,8 @@
 /**
  ** Password validator for login pages
  */
-import { STRENGTH_COLOR } from '../config-global';
+
+import { STRENGTH_COLOR } from "@/config/layout";
 
 //? has number
 const hasNumber = (number: string) => new RegExp(/[0-9]/).test(number);

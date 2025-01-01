@@ -2,7 +2,7 @@
 
 import React from "react";
 import Logo from "@/components/logo";
-import { APP } from "@/config-global";
+import { APP } from "@/config/global";
 import { m } from "framer-motion";
 import { bgGradient } from "@/theme/css";
 import { colord } from "colord";

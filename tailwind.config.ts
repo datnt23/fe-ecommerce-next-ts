@@ -1,3 +1,4 @@
+import { nextui } from "@nextui-org/react";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -6,6 +7,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -18,7 +20,7 @@ export default {
         modal: "var(--zIndex-modal)",
         snackbar: "var(--zIndex-snackbar)",
         z1999: "1999",
-        z9990: "9990",
+        z9999: "9999",
       },
       borderRadius: {
         "50%": "50%",
@@ -35,8 +37,8 @@ export default {
         blur6: "6px",
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        // background: "var(--background)",
+        // foreground: "var(--foreground)",
 
         "text-primary": "var(--text-primary)",
         "text-secondary": "var(--text-secondary)",
@@ -90,26 +92,24 @@ export default {
       },
     },
   },
-  // daisyUI config (optional - here are the default values)
-  daisyui: {
-    themes: [
-      {
-        customTheme: {
-          primary: "#2065d1",
-          info: "#00b8d9",
-          success: "#22c55e",
-          warning: "#ffab00",
-          error: "#ff5630",
+  darkMode: "class",
+  plugins: [
+    nextui({
+      defaultTheme: "light",
+      themes: {
+        light: {
+          colors: {
+            background: "#FFFFFF",
+            foreground: "#212B36",
+          },
+        },
+        dark: {
+          colors: {
+            background: "#161C24",
+            foreground: "#FFFFFF",
+          },
         },
       },
-    ], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
-    darkTheme: "dark", // name of one of the included themes for dark mode
-    base: true, // applies background color and foreground color for root element by default
-    styled: true, // include daisyUI colors and design decisions for all components
-    utils: true, // adds responsive and modifier utility classes
-    prefix: "", // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
-    logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
-    themeRoot: ":root", // The element that receives theme color CSS variables
-  },
-  plugins: [require("daisyui")],
+    }),
+  ],
 } satisfies Config;

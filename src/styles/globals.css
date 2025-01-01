@@ -15,29 +15,29 @@
   --primary-light: #76b0f1;
   --contrastText: #ffffff;
 
-  --info-lighter: #CAFDF5;
-  --info-light: #61F3F3;
+  --info-lighter: #cafdf5;
+  --info-light: #61f3f3;
   --info-main: #00b8d9;
-  --info-dark: #006C9C;
+  --info-dark: #006c9c;
   --info-darker: #003768;
 
-  --success-lighter: #D3FCD2;
-  --success-light: #77ED8B;
+  --success-lighter: #d3fcd2;
+  --success-light: #77ed8b;
   --success-main: #22c55e;
-  --success-dark: #118D57;
-  --success-darker: #065E49;
+  --success-dark: #118d57;
+  --success-darker: #065e49;
 
-  --warning-lighter: #FFF5CC;
-  --warning-light: #FFD666;
+  --warning-lighter: #fff5cc;
+  --warning-light: #ffd666;
   --warning-main: #ffab00;
-  --warning-dark: #B76E00;
-  --warning-darker: #7A4100;
+  --warning-dark: #b76e00;
+  --warning-darker: #7a4100;
   --warning-contrastText: #ffffff;
 
   --error-lighter: #ffe9d5;
-  --error-light: #FFAC82;
+  --error-light: #ffac82;
   --error-main: #ff5630;
-  --error-dark: #B71D18;
+  --error-dark: #b71d18;
   --error-darker: #7a0916;
 
   --white: #ffffff;
@@ -74,7 +74,6 @@
   /* Height */
   --height-mobile-header: 64px;
   --height-desktop-header: 72px;
-
 }
 
 * {
@@ -83,26 +82,10 @@
   box-sizing: border-box;
 }
 
-body {
+/* body {
   color: var(--foreground);
   background: var(--background);
-}
-
-@layer utilities {
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-  }
-}
+} */
 
 .typography_h1 {
   font-size: 64px;
@@ -193,4 +176,11 @@ body {
   font-style: normal;
   font-weight: 700;
   line-height: 26px;
+}
+
+.typography_button_medium {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
 }

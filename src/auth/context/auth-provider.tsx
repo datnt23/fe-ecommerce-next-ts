@@ -1,18 +1,24 @@
-"use client"
+"use client";
 
-import React, { useCallback, useEffect, useMemo, useReducer, useState } from "react";
+import React, {
+    useCallback,
+    useEffect,
+    useMemo,
+    useReducer,
+    useState,
+} from "react";
 import { ActionMapType, AuthStateType, AuthUserType } from "../type";
 import localStorageAvailable from "../../utils/local-storage";
 import { AuthContext } from "./auth-context";
 import { isValidToken, setRefreshToken, setSession } from "./utils";
 import axiosInstance from "../../utils/axios";
-import { API_ENDPOINTS } from "@/config-global";
+import { API } from "@/config/api";
 
 // ----------------------------------------------------------------------
-const STORAGE_KEY = 'accessToken';
-const LOADING = 'loading'
-const AUTHENTICATED = 'authenticated'
-const UNAUTHENTICATED = 'unauthenticated'
+const STORAGE_KEY = "accessToken";
+const LOADING = "loading";
+const AUTHENTICATED = "authenticated";
+const UNAUTHENTICATED = "unauthenticated";
 
 enum Types {
     INITIAL = "INITIAL",
@@ -89,7 +95,7 @@ export function AuthProvider({ children }: Props) {
             if (accessToken && isValidToken(accessToken)) {
                 setSession(accessToken);
 
-                const response = await axiosInstance.get(API_ENDPOINTS.auth.me);
+                const response = await axiosInstance.get(API.endpoints.auth.me);
 
                 const { user } = response.data.data;
 
@@ -123,16 +129,17 @@ export function AuthProvider({ children }: Props) {
 
     //* LOGIN
     const login = useCallback(async (email: string, password: string) => {
-        const response = await axiosInstance.post(API_ENDPOINTS.auth.login, {
+        const response = await axiosInstance.post(API.endpoints.auth.login, {
             email,
             password,
         });
+
         const { data } = response.data;
 
         const { user, access_token, refresh_token } = data;
 
         setSession(access_token);
-        setRefreshToken(refresh_token)
+        setRefreshToken(refresh_token);
 
         dispatch({
             type: Types.LOGIN,
@@ -151,7 +158,7 @@ export function AuthProvider({ children }: Props) {
             firstName: string,
             lastName: string
         ) => {
-            const response = await axiosInstance.post(API_ENDPOINTS.auth.register, {
+            const response = await axiosInstance.post(API.endpoints.auth.register, {
                 email,
                 password,
                 confirmPassword,
@@ -163,7 +170,7 @@ export function AuthProvider({ children }: Props) {
             const { user, access_token, refresh_token } = data;
 
             setSession(access_token);
-            setRefreshToken(refresh_token)
+            setRefreshToken(refresh_token);
 
             dispatch({
                 type: Types.REGISTER,
@@ -178,7 +185,7 @@ export function AuthProvider({ children }: Props) {
     //* LOGOUT
     const logout = useCallback(async () => {
         setSession(null);
-        setRefreshToken(null)
+        setRefreshToken(null);
         dispatch({
             type: Types.LOGOUT,
         });
@@ -193,7 +200,7 @@ export function AuthProvider({ children }: Props) {
         setOpenDrawer(false);
     }, []);
 
-    const checkAuthenticated = state.user ? AUTHENTICATED : UNAUTHENTICATED
+    const checkAuthenticated = state.user ? AUTHENTICATED : UNAUTHENTICATED;
 
     const status = state.loading ? LOADING : checkAuthenticated;
 
@@ -209,9 +216,18 @@ export function AuthProvider({ children }: Props) {
             register,
             logout,
             onToggle: onToggleDrawer,
-            onClose: onCloseDrawer
+            onClose: onCloseDrawer,
         }),
-        [login, logout, register, onToggleDrawer, onCloseDrawer, state.user, status, openDrawer]
+        [
+            login,
+            logout,
+            register,
+            onToggleDrawer,
+            onCloseDrawer,
+            state.user,
+            status,
+            openDrawer,
+        ]
     );
 
     return (

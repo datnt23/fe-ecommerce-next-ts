@@ -3,12 +3,12 @@
 import React, { useEffect } from "react";
 import { useAnimation, m } from "framer-motion";
 import useOffSetTop from "../../hooks/use-off-set-top";
-import { HEADER, NAV } from "../../config-global";
 import { useResponsive } from "../../hooks/use-responsive";
 import Logo from "../../components/logo";
 import AccountPopover from "../../components/account-custom";
 import { SettingsButton } from "../../components/settings";
 import Iconify from "../../components/iconify";
+import { HEADER, NAV } from "@/config/layout";
 
 
 // ----------------------------------------------------------------------

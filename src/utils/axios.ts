@@ -1,8 +1,8 @@
 import axios from "axios";
-import { API, API_ENDPOINTS } from "../config-global";
 import localStorageAvailable from "./local-storage";
 import { setSession } from "../auth/context/utils";
 import { paths } from "@/routes/paths";
+import { API } from "@/config/api";
 
 // ----------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ axiosInstance.interceptors.request.use(
 );
 
 const refreshTokenApi = async (refreshToken: string) => {
-  return await axiosInstance.get(API_ENDPOINTS.auth.refreshToken, {
+  return await axiosInstance.get(API.endpoints.auth.refreshToken, {
     headers: {
       "x-refresh-token": `Bearer ${refreshToken}`,
     },
@@ -57,11 +57,11 @@ axiosInstance.interceptors.response.use(
   (error) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    if (error.response?.status === 401) {
-      handleLogout().then(() => {
-        location.href = paths.auth.login;
-      });
-    }
+    // if (error.response?.status === 401) {
+    //   handleLogout().then(() => {
+    //     location.href = paths.auth.login;
+    //   });
+    // }
 
     const originalRequest = error.config;
 

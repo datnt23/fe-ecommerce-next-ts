@@ -5,6 +5,7 @@ import { isEqual } from 'lodash';
 import { SettingsValueProps } from '../type';
 import { SettingsContext } from './settings-context';
 import { useLocalStorage } from '../../../hooks/use-local-storage';
+import { ThemeProps, useTheme } from '@nextui-org/use-theme';
 
 // ----------------------------------------------------------------------
 
@@ -14,6 +15,8 @@ type SettingsProviderProps = {
 };
 
 export function SettingsProvider({ children, defaultSettings }: SettingsProviderProps) {
+    const { setTheme, theme } = useTheme()
+
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const [settings, setSettings] = useLocalStorage('settings', defaultSettings);
@@ -28,12 +31,13 @@ export function SettingsProvider({ children, defaultSettings }: SettingsProvider
         [setSettings]
     );
 
-    // Reset
+    //* Reset
     const onReset = useCallback(() => {
         setSettings(defaultSettings);
+        setTheme(ThemeProps.SYSTEM)
     }, [defaultSettings, setSettings]);
 
-    // Drawer
+    //* Drawer
     const onToggleDrawer = useCallback(() => {
         setOpenDrawer((prev) => !prev);
     }, []);
@@ -48,10 +52,13 @@ export function SettingsProvider({ children, defaultSettings }: SettingsProvider
         () => ({
             ...settings,
             onUpdate,
-            // Reset
+            //* Reset
             canReset,
             onReset,
-            // Drawer
+            //* Theme Mode
+            theme,
+            setTheme,
+            //* Drawer
             open: openDrawer,
             onToggle: onToggleDrawer,
             onClose: onCloseDrawer,
@@ -60,6 +67,8 @@ export function SettingsProvider({ children, defaultSettings }: SettingsProvider
             onReset,
             onUpdate,
             settings,
+            theme,
+            setTheme,
             canReset,
             openDrawer,
             onCloseDrawer,

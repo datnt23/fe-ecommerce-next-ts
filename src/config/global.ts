@@ -1,17 +1,9 @@
-export const API = {
-  hostUrl: process.env.NEXT_PUBLIC_HOST_API ?? "",
-};
-
-export const API_ENDPOINTS = {
-  auth: {
-    me: "/auth/me",
-    login: "/auth/login",
-    register: "/auth/register",
-    refreshToken: "/auth/refresh-token",
-  },
-};
-
 export const APP = {
+  root: {
+    title: "D-Shop E-Commerce",
+    description: "Have a nice day!",
+    icon: "/favicon.ico",
+  },
   auth: {
     layout: {
       title: "Hi! Welcome to Manage",
@@ -20,6 +12,7 @@ export const APP = {
     },
   },
   login: {
+    name: "Login",
     form: {
       title: "Sign in to your account",
       labelNotHaveAccount: "Don’t have an account?",
@@ -29,42 +22,16 @@ export const APP = {
     },
   },
   register: {
+    name: "Register",
     form: {
       title: "Sign up to your account",
       labelHaveAccount: "Already have an account?",
       signIn: "Sign in",
       forgotPassword: "Forgot password?",
-      button: "Sign in",
+      button: "Create account",
     },
   },
   settings: {
     name: "Settings",
   },
-};
-
-export const STRENGTH_COLOR = {
-  errorMain: "#f44336",
-  warningDark: "#ffc107",
-  orangeMain: "#ffab91",
-  successMain: "#00e676",
-  successDark: "#00c853",
-};
-
-export const HEADER = {
-  H_MOBILE: 64,
-  H_DESKTOP: 80,
-};
-
-export const NAV = {
-  W_VERTICAL: 300,
-  W_MINI: 88,
-};
-
-export const BREAK_POINTS = {
-  xs: 480,
-  sm: 600,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  xxl: 1440,
 };
